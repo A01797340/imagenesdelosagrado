@@ -698,6 +698,7 @@
           <p><strong>Lugar:</strong> <span id="modalPlace"></span></p>
           <p><strong>Fecha:</strong> <span id="modalDate"></span></p>
           <p id="modalMeaning"></p>
+          <p><strong>Crédito:</strong> <span id="modalCredit"></span></p>
           <div id="modalTags" class="tags"></div>
         </div>
       </div>
@@ -786,15 +787,7 @@
     const modalDate = $("modalDate");
     const modalMeaning = $("modalMeaning");
     const modalTags = $("modalTags");
-
-    const sacredPrompt = $("sacredPrompt");
-    const sacredStyle = $("sacredStyle");
-    const sacredAspect = $("sacredAspect");
-    const sacredAuthor = $("sacredAuthor");
-    const generateSacredImageBtn = $("generateSacredImageBtn");
-    const generatedSacredGallery = $("generatedSacredGallery");
-    const imageStatus = $("imageStatus");
-    const externalAIGeneratorLink = $("externalAIGeneratorLink");
+    const modalCredit = $("modalCredit");
 
     /* =========================
        MODAL
@@ -806,6 +799,7 @@
       modalPlace.textContent = item.place || "No especificado";
       modalDate.textContent = item.date || "Sin fecha";
       modalMeaning.textContent = item.meaning || "Sin descripción";
+      modalCredit.textContent = item.credit || "Martín García";
       modalTags.innerHTML = (item.tags || []).map(tag => `<span class="tag">${tag}</span>`).join("");
       imageModal.classList.add("active");
     }
