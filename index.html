@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Imágenes de lo Sagrado</title>
+
+  <!-- Fuentes libres -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================
+       PALETA Y BASE
+    ========================== */
+    :root{
+      --bg1:#f6f1e8;
+      --bg2:#eadfce;
+      --paper:#fffdf9;
+      --paper-soft:rgba(255,252,247,.88);
+      --line:#dcc8b3;
+      --line-soft:#eadccf;
+      --brown:#6a4328;
+      --brown-dark:#3a2216;
+      --text:#44372f;
+      --muted:#6e6054;
+      --gold:#b89b6a;
+      --shadow:0 16px 34px rgba(58,34,22,.10);
+      --shadow-soft:0 8px 20px rgba(58,34,22,.06);
+      --radius:22px;
+      --radius-sm:14px;
+      --max:1200px;
+    }
+
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:"Cormorant Garamond", Georgia, serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(184,155,106,.15), transparent 20%),
+        radial-gradient(circle at 90% 15%, rgba(106,67,40,.08), transparent 24%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      background-attachment:fixed;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.12;
+      background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size:8px 8px;
+      mix-blend-mode:soft-light;
+    }
+
+    img{ max-width:100%; display:block; }
+    a{ color:var(--brown); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .container{
+      width:min(var(--max), calc(100% - 2rem));
+      margin:0 auto;
+    }
+
+    h1,h2,h3,.brand-title{
+      font-family:"Poiret One", "Trebuchet MS", sans-serif;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--brown-dark);
+      margin:0 0 .6rem;
+    }
+    h1{ font-size:clamp(2.5rem, 4.7vw, 4.6rem); line-height:1.02; }
+    h2{ font-size:clamp(1.6rem, 2.6vw, 2.4rem); }
+    h3{ font-size:clamp(1rem, 1.5vw, 1.3rem); }
+    p{ margin:0 0 1rem; line-height:1.65; font-size:1.08rem; }
+
+    .section{
+      background:var(--paper-soft);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:1.4rem;
+      margin:2rem 0;
+      overflow:hidden;
+      position:relative;
+    }
+    .section::before{
+      content:"";
+      display:block;
+      width:120px;
+      height:2px;
+      margin-bottom:1rem;
+      background:linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .panel{
+      background:rgba(255,255,255,.72);
+      border:1px solid var(--line-soft);
+      border-radius:18px;
+      box-shadow:var(--shadow-soft);
+      padding:1rem;
+    }
+
+    .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .grid-3{ display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:1rem; }
+    .stack{ display:grid; gap:1rem; }
+
+    .btn, button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.4rem;
+      min-height:44px;
+      padding:.75rem 1rem;
+      border:none;
+      border-radius:999px;
+      cursor:pointer;
+      font:inherit;
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .btn:hover, button:hover{ transform:translateY(-1px); }
+    .btn-primary{
+      background:linear-gradient(180deg, var(--brown), var(--brown-dark));
+      color:#fff;
+      box-shadow:0 10px 20px rgba(58,34,22,.18);
+    }
+    .btn-secondary{
+      background:rgba(184,155,106,.12);
+      color:var(--brown);
+      border:1px solid rgba(106,67,40,.16);
+    }
+
+    label{
+      display:block;
+      margin:.7rem 0 .35rem;
+      font-weight:700;
+      color:var(--brown-dark);
+      font-size:1rem;
+    }
+    input, select, textarea{
+      width:100%;
+      padding:.85rem .95rem;
+      border-radius:12px;
+      border:1px solid #d8c7b4;
+      background:#fff;
+      font:inherit;
+      color:var(--text);
+    }
+    textarea{ min-height:130px; resize:vertical; }
+    input:focus, select:focus, textarea:focus{
+      outline:none;
+      border-color:var(--gold);
+      box-shadow:0 0 0 4px rgba(184,155,106,.10);
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:rgba(250,245,237,.84);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(106,67,40,.12);
+    }
+    .topbar-inner{
+      width:min(var(--max), calc(100% - 2rem));
+      margin:0 auto;
+      min-height:72px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:1rem;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:.8rem;
+      min-width:0;
+    }
+    .brand img{
+      width:46px;
+      height:46px;
+      border-radius:10px;
+      object-fit:cover;
+      border:1px solid var(--line);
+      background:#fff;
+    }
+    .brand-title{ font-size:1rem; line-height:1.1; margin:0; }
+    .brand-sub{ margin:0; font-size:.88rem; color:var(--muted); }
+
+    .nav-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.5rem;
+    }
+    .nav-links a{
+      padding:.45rem .75rem;
+      border-radius:999px;
+      font-size:.96rem;
+    }
+    .nav-links a:hover{
+      text-decoration:none;
+      background:rgba(184,155,106,.12);
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:360px 1fr;
+      gap:1.5rem;
+      align-items:center;
+      padding:2rem 0 0;
+    }
+    .hero-card{
+      background:linear-gradient(180deg, rgba(245,239,229,.95), rgba(238,228,212,.88));
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:1rem;
+      box-shadow:var(--shadow);
+    }
+    .hero-card img{
+      border-radius:16px;
+      border:1px solid rgba(106,67,40,.08);
+      background:#f7f1e8;
+    }
+    .badge{
+      display:inline-block;
+      padding:.4rem .8rem;
+      border-radius:999px;
+      background:rgba(184,155,106,.12);
+      border:1px solid rgba(106,67,40,.12);
+      color:var(--brown);
+      margin-bottom:.9rem;
+      font-size:.95rem;
+    }
+    .lead{ color:var(--muted); font-size:1.15rem; }
+    .hero-meta{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:.8rem;
+      margin-top:1rem;
+    }
+    .meta-card{
+      background:rgba(255,255,255,.76);
+      border:1px solid var(--line-soft);
+      border-radius:16px;
+      padding:.9rem;
+      box-shadow:var(--shadow-soft);
+    }
+    .meta-card strong{
+      display:block;
+      margin-bottom:.3rem;
+      color:var(--brown);
+    }
+    .meta-card span{ color:var(--muted); }
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:1rem;
+    }
+    .card{
+      background:var(--paper);
+      border:1px solid var(--line-soft);
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:var(--shadow-soft);
+      cursor:pointer;
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 16px 28px rgba(58,34,22,.10);
+    }
+    .card img{
+      width:100%;
+      height:280px;
+      object-fit:cover;
+    }
+    .card-body{ padding:1rem; }
+    .card-body p{ color:var(--muted); font-size:1rem; }
+
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.4rem;
+      margin-top:.7rem;
+    }
+    .tag{
+      padding:.25rem .6rem;
+      border-radius:999px;
+      font-size:.82rem;
+      color:var(--brown);
+      background:#f3eadf;
+      border:1px solid #e1d0bc;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:.8rem;
+      margin:1rem 0;
+    }
+    .stat{
+      background:#fff;
+      border:1px solid var(--line-soft);
+      border-radius:14px;
+      padding:1rem;
+      box-shadow:var(--shadow-soft);
+    }
+    .stat strong{
+      display:block;
+      font-size:1.45rem;
+      color:var(--brown);
+    }
+    .stat span{ color:var(--muted); font-size:.92rem; }
+
+    .entry-list{
+      display:grid;
+      gap:.8rem;
+      max-height:430px;
+      overflow:auto;
+    }
+    .entry{
+      background:#fff;
+      border:1px solid var(--line-soft);
+      border-radius:14px;
+      padding:.9rem;
+    }
+    .entry small{
+      display:block;
+      color:var(--muted);
+      margin-bottom:.35rem;
+    }
+
+    .chip-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.6rem;
+      margin-bottom:.8rem;
+    }
+    .chip-row button{
+      background:#f3eadf;
+      color:var(--brown);
+      border:1px solid #dbc7b0;
+      border-radius:999px;
+      padding:.5rem .8rem;
+    }
+
+    .iframe-wrap{
+      overflow:hidden;
+      border-radius:18px;
+      border:1px solid var(--line-soft);
+      box-shadow:var(--shadow-soft);
+      background:#fff;
+    }
+    iframe{
+      width:100%;
+      border:0;
+      display:block;
+      background:#fff;
+    }
+
+    /* Modal */
+    .modal{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background:rgba(34,22,15,.78);
+      padding:1rem;
+      z-index:100;
+    }
+    .modal.active{ display:flex; }
+    .modal-box{
+      width:min(1100px, 100%);
+      max-height:90vh;
+      overflow:auto;
+      background:rgba(255,252,247,.98);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:1rem;
+      box-shadow:0 24px 50px rgba(0,0,0,.22);
+      position:relative;
+    }
+    .modal-close{
+      position:absolute;
+      top:.8rem;
+      right:.8rem;
+      width:42px;
+      height:42px;
+      border-radius:999px;
+      background:var(--brown-dark);
+      color:#fff;
+      border:none;
+      font-size:1.2rem;
+      cursor:pointer;
+    }
+    .modal-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:1rem;
+      align-items:start;
+    }
+    .modal-grid img{
+      width:100%;
+      max-height:78vh;
+      object-fit:contain;
+      border-radius:16px;
+      background:#f6f0e7;
+      border:1px solid var(--line-soft);
+    }
+
+    .footer{
+      text-align:center;
+      color:var(--muted);
+      padding:0 0 3rem;
+    }
+
+    @media (max-width:1080px){
+      .hero, .modal-grid{ grid-template-columns:1fr; }
+      .hero-meta, .gallery{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width:860px){
+      .grid-2, .hero-meta, .stats, .gallery{ grid-template-columns:1fr; }
+      .nav-links{ display:none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================
+       MENÚ
+  ========================== -->
+  <nav class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <img src="logo_templo.jpg" alt="Logo del Templo de San Francisco de Asís">
+        <div>
+          <p class="brand-title">Imágenes de lo Sagrado</p>
+          <p class="brand-sub">Templo de San Francisco de Asís · Dominicos Chihuahua</p>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <a href="#archivo">Visual</a>
+        <a href="#sentidos">Sentidos</a>
+        <a href="#voyant">Textual</a>
+        <a href="#timeline">Tiempo</a>
+        <a href="#mapa">Geografía</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =========================
+       PORTADA
+  ========================== -->
+  <header class="container hero">
+    <div class="hero-card">
+      <img src="logo_templo.jpg" alt="Logo del Templo de San Francisco de Asís">
+    </div>
+
+    <div>
+      <h1>Imágenes de lo Sagrado</h1>
+      <p class="lead">
+        Archivo visual, fotográfico e interactivo sobre la experiencia de lo sagrado en el Templo de San Francisco de Asís 
+        y generación de imágenes de lo Sagrado a partir del sentimiento, texto, tiempo, geografía e imaginación.
+        Integración de patrimonio, memoria, iconografía, sentimientos, exploración textual, cronología y
+        georreferenciación.
+      </p>
+      <div class="stack" style="margin-top:1rem;">
+        <div class="hero-meta">
+          <div class="meta-card">
+            <span>¿Qué emociones y sentidos activa la visualidad sagrada en quienes la contemplan?</span>
+          </div>
+        </div>
+
+        <div>
+          <a href="#archivo" class="btn btn-primary">Explorar archivo</a>
+          <a href="#photoTitle" class="btn btn-primary">Agregar imágenes</a>
+          <a href="#sentidos" class="btn btn-primary">Registrar sentimientos</a>
+          <a href="#voyant" class="btn btn-primary">Imágenes textuales</a>
+          <a href="#timeline" class="btn btn-primary">Imágenes en el tiempo</a>
+          <a href="#mapa" class="btn btn-primary">Imágenes geográficas</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- =========================
+         ARCHIVO VISUAL
+    ========================== -->
+    <section id="archivo" class="section">
+      <h2>Imágenes visuales fotográficas</h2>
+      <p>Al hacer clic en una imagen, se abre una vista ampliada con sus datos.</p>
+      <div id="gallery" class="gallery"></div>
+    </section>
+
+    <!-- =========================
+         AGREGAR NUEVA IMAGEN
+    ========================== -->
+    <section class="section">
+      <div class="grid-2">
+        <div class="panel">
+          <h3>Imágenes de usuarios</h3>
+          <p class="small">Los nuevos registros se guardan localmente.</p>
+
+          <label for="photoTitle">Título del registro</label>
+          <input id="photoTitle" type="text" placeholder="Ej. Altar lateral de San Francisco">
+
+          <label for="photoPlace">Lugar</label>
+          <input id="photoPlace" type="text" placeholder="Ej. Templo de San Francisco de Asís, Chihuahua">
+
+          <label for="photoDate">Fecha o contexto</label>
+          <input id="photoDate" type="text" placeholder="Ej. Archivo del templo / Semana Santa 2026">
+
+          <label for="photoMeaning">Descripción o nota curatorial</label>
+          <textarea id="photoMeaning" placeholder="Describe la imagen, su función devocional o valor patrimonial"></textarea>
+
+          <label for="photoFile">Subir imagen</label>
+          <input id="photoFile" type="file" accept="image/*">
+
+          <div style="display:flex; gap:.7rem; flex-wrap:wrap; margin-top:1rem;">
+            <button class="btn btn-primary" id="addPhotoBtn" type="button">Añadir al archivo</button>
+            <button class="btn btn-secondary" id="resetPhotosBtn" type="button">Limpiar imágenes añadidas</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Orientación patrimonial</h3>
+          <p>Cada imagen apoya y aporta a la comunidad usuaria como documento visual, objeto devocional, huella histórica, experiencia sensible.</p>
+          <p>Es importante aportar: objeto, lugar, temporalidad, advocación, función ritual y respuesta afectiva. ¡Gracias por tu participación!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         SENTIMIENTOS
+    ========================== -->
+    <section id="sentidos" class="section">
+      <h2>Imágenes de sentimientos y sentidos</h2>
+      <p>Este módulo permite expresar lo que se siente ante una imagen o espacio sagrado.</p>
+
+      <div class="grid-2">
+        <div class="panel">
+          <h3>Registrar testimonio</h3>
+
+          <label for="visitorName">Nombre o seudónimo</label>
+          <input id="visitorName" type="text" placeholder="Opcional">
+
+          <label for="visitorPlace">Lugar de procedencia</label>
+          <input id="visitorPlace" type="text" placeholder="Ej. Chihuahua, Delicias, Cuauhtémoc">
+
+          <label for="sacredItem">Imagen o espacio observado</label>
+          <input id="sacredItem" type="text" placeholder="Ej. Nazareno, retablo lateral, Virgen del Rosario">
+
+          <label for="emotionSelect">Emoción principal</label>
+          <select id="emotionSelect">
+            <option value="Asombro">Asombro</option>
+            <option value="Paz">Paz</option>
+            <option value="Consuelo">Consuelo</option>
+            <option value="Esperanza">Esperanza</option>
+            <option value="Dolor">Dolor</option>
+            <option value="Memoria">Memoria</option>
+            <option value="Reverencia">Reverencia</option>
+            <option value="Comunidad">Comunidad</option>
+            <option value="Miedo">Miedo</option>
+            <option value="Enojo">Enojo</option>
+            <option value="Tristeza">Tristeza</option>
+          </select>
+
+          <label for="visitorText">¿Qué te hace sentir o pensar lo sagrado?</label>
+          <textarea id="visitorText" placeholder="Escribe aquí tu testimonio"></textarea>
+
+          <div style="display:flex; gap:.7rem; flex-wrap:wrap; margin-top:1rem;">
+            <button class="btn btn-primary" id="saveFeelingBtn" type="button">Guardar testimonio</button>
+            <button class="btn btn-secondary" id="clearFeelingsBtn" type="button">Borrar testimonios</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Formato visual del sentimineto o pensamiento.</h3>
+
+          <div class="stats">
+            <div class="stat"><strong id="totalEntries">0</strong><span>Testimonios</span></div>
+            <div class="stat"><strong id="topEmotion">—</strong><span>Emoción más frecuente</span></div>
+            <div class="stat"><strong id="positiveScore">0</strong><span>Marcas positivas</span></div>
+            <div class="stat"><strong id="contemplativeScore">0</strong><span>Marcas contemplativas</span></div>
+            <div class="stat"><strong id="strongScore">0</strong><span>Marcas negativas</span></div>
+          </div>
+
+          <div id="keywordsSummary" class="entry"></div>
+          <div id="entriesList" class="entry-list" style="margin-top:1rem;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         VOYANT
+    ========================== -->
+    <section id="voyant" class="section">
+      <h2>Imágenes textuales</h2>
+      <p>Galería de imágenes a partir del corpus textual de la Sagrada Escritura 
+        con la herramienta Voyant Tools.
+      Al hacer clic sobre una palabra ofrece una imagen textual. También puedes interactuar con la herramienta
+      para generar tus propias imágenes.</p>
+
+      <div class="chip-row">
+        <button data-query="Dios" type="button">Dios</button>
+        <button data-query="Jesús" type="button">Jesús</button>
+        <button data-query="Yahvé" type="button">Yahvé</button>
+        <button data-query="fe" type="button">fe</button>
+        <button data-query="gracia" type="button">gracia</button>
+        <button data-query="esperanza" type="button">esperanza</button>
+        <button data-query="enojo" type="button">enojo</button>
+        <button data-query="castigo" type="button">castigo</button>
+      </div>
+
+      <div class="iframe-wrap">
+        <iframe
+          id="voyantFrame"
+          title="Voyant Tools"
+          style="height:840px"
+          src="https://voyant-tools.org/?stopList=keywords-eabd5f811f15df3aa0176feac8e68431&panels=corpusterms%2Creader%2Ctrends%2Cphrases%2Ccorpuscollocates&corpus=50415dcbeb335e9db488281becf77b32">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- =========================
+         TIMELINE
+    ========================== -->
+    <section id="timeline" class="section">
+      <h2>Imágenes en el tiempo</h2>
+      <p>Cronología sobre advocaciones, retablos y arte católico.</p>
+
+      <div class="iframe-wrap">
+        <iframe
+          title="Línea del tiempo"
+          style="height:700px"
+          src="https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=v2%3A2PACX-1vQ0_hzH1oPcuL_AwthCTtkzLRRMzjkhiuEimsbpdYe3LYKrZnIRCyZFXfEjW8k9FftAhdHJJpoDP-2A&font=Default&lang=es&initial_zoom=2">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- =========================
+         MAPA
+    ========================== -->
+    <section id="mapa" class="section">
+      <h2>Imágenes en la geografía</h2>
+      <p>Mapa patrimonial con sitios y rutas históricas.</p>
+
+      <div class="iframe-wrap">
+        <iframe
+          title="Mapa de misiones franciscanas"
+          style="height:700px"
+          src="https://www.google.com/maps/d/embed?mid=1iOUJvq1bfdC4Ux-11rlENAF1RgeDhbY&ehbc=2E312F">
+        </iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <p><strong class="brand-title">Imágenes de lo Sagrado</strong></p>
+
+    <p>
+      Archivo visual inspirado en el Templo de San Francisco de Asís.
+    </p>
+
+    <p>
+      Salvo donde se indique otra licencia, los textos, la curaduría original, las imágenes y la escritura editorial de este sitio están bajo
+      <a
+      href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es"
+      target="_blank"
+      rel="license noopener noreferrer">
+      Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0)
+    </a>
+    </p>
+
+    <p>
+      Las imágenes de terceros conservan la licencia y atribución indicadas en su ficha o crédito correspondiente.
+      Voyant Tools, TimeLineJs y Google My Maps se utilizan conforme a su licencia.
+    </p>
+
+    <p>
+      © 2026 Martín García Ortega. Algunos derechos reservados.
+    </p>
+
+    <p>
+      <a
+        href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es"
+        target="blank"
+        rel="license noopener noreferrer">
+        <img
+        src="cc-by-nc-sa.png"
+        alt="Licencia Creative Commons BY-NC-SA 4.0"
+        width="140"
+        loading="lazy">
+      </a>
+    </p>
+  </footer>
+
+  <!-- =========================
+       MODAL
+  ========================== -->
+  <div class="modal" id="imageModal">
+    <div class="modal-box">
+      <button class="modal-close" id="closeModal" type="button" aria-label="Cerrar">×</button>
+      <div class="modal-grid">
+        <img id="modalImage" src="" alt="">
+        <div>
+          <h3 id="modalTitle">Título</h3>
+          <p><strong>Lugar:</strong> <span id="modalPlace"></span></p>
+          <p><strong>Fecha:</strong> <span id="modalDate"></span></p>
+          <p id="modalMeaning"></p>
+          <div id="modalTags" class="tags"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* =========================
+       DATOS BASE DEL ARCHIVO
+    ========================== */
+    const seedGallery = [
+      { title:"San Antonio de Padua", place:"Templo de San Francisco de Asís", date:"S. XX", meaning:"Escultura de madera, nicho retablístico. Imagen vinculada a la infancia y al amor.", image:"antonio.jpg" },
+      { title:"Virgen Dolorosa", place:"Templo de San Francisco de Asís", date:"S. XVIII", meaning:"Escultura de madera. Imagen vinculada al dolor, la compasión y las devociones de Semana Santa.", image:"dolorosa.jpg" },
+      { title:"Nuestra Señora de Fátima", place:"Templo de San Francisco de Asís", date:"S. XIX", meaning:"Escultura de yeso. Advocación mariana asociada a oración, rosario, aparición y piedad popular.", image:"fatima.jpg" },
+      { title:"San Francisco de Asís", place:"Templo de San Francisco de Asís", date:"S. XVIII", meaning:"Escultura de madera. Imagen central para el horizonte espiritual e identitario del templo.", image:"francisco.jpg" },
+      { title:"Virgen de Guadalupe", place:"Templo de San Francisco de Asís", date:"S. XVIII", meaning:"Retablo con pinturas al óleo de la Virgen de Guadalupe y sus apariciones. Identidad católica mexicana.", image:"guadalupe.jpg" },
+      { title:"Inmaculada Concepción", place:"Templo de San Francisco de Asís", date:"S. XVIII", meaning:"Escultura de madera. Imagen mariana vinculada a pureza, gracia y triunfo de la inocencia.", image:"inmaculada.jpg" },
+      { title:"San Judas Tadeo", place:"Templo de San Francisco de Asís", date:"S. XX", meaning:"Escultura de yeso. Figura apostólica asociada a la intercesión y a la religiosidad popular contemporánea.", image:"judas.jpg" },
+      { title:"Nuestra Señora de la Luz", place:"Templo de San Francisco de Asís", date:"S. XVIII", meaning:"Escultura de madera. La luz resalta la experiencia contemplativa y el valor escenográfico de la imagen sagrada. Asociado a la salvación", image:"luz.jpg" },
+      { title:"San Martín", place:"Templo de San Francisco de Asís", date:"S. XX", meaning:"Escultura de yeso. Imagen de santo dominico, vida de servicio ejemplar. Patrono de la justicia social.", image:"martin.jpg" },
+      { title:"San Miguel Arcángel", place:"Templo de San Francisco de Asís", date:"S. XVIII", meaning:"Pintura al óleo. Imagen de arcángel, útil para el estudio de iconografía celestial y protección espiritual.", image:"miguel.jpg" },
+      { title:"Cristo de la Misericordia", place:"Templo de San Francisco de Asís", date:"S. XVIII", meaning:"Escultura de pasta de maíz. Crucificado que articula sufrimiento, redención y contemplación del cuerpo sacrificado.", image:"misericordia.jpg" },
+      { title:"Jesús Nazareno", place:"Templo de San Francisco de Asís", date:"S. XVIII", meaning:"Escultura de madera. Imagen marcada por la pasión, la realeza humillada y la penitencia.", image:"nazareno.jpg" },
+      { title:"Divina Pastora", place:"Templo de San Francisco de Asís", date:"S. XVIII", meaning:"Pintura al óleo. Advocación mariana con corderos, útil para leer símbolos pastorales y de cuidado.", image:"pastora.jpg" },
+      { title:"Portal de peregrinos", place:"Templo de San Francisco de Asís", date:"S. XVII", meaning:"Acceso patrimonial que permite estudiar fachada, tránsito y umbral. Escudo de los Frainciscanos", image:"portal.jpg" },
+      { title:"Puertas del templo", place:"Templo de San Francisco de Asís", date:"S. XX", meaning:"Vista del acceso a través del enrejado, significativa para el tema del umbral. Atrio como puente entre lo profano y lo sagrado.", image:"puertas.jpg" },
+      { title:"San Rafael Arcángel", place:"Templo de San Francisco de Asís", date:"S. XVIII", meaning:"Pintura al óleo. Imagen de arcángel asociada a guía, medicina y acompañamiento espiritual.", image:"rafael.jpg" },
+      { title:"Retablo misterios dolorosos", place:"Templo de San Francisco de Asís", date:"S. XVII", meaning:"Madera estofada, pinturas al óleo, escultura de madera. Conjunto retablístico con imaginería de la pasión de Cristo.", image:"retablo_dolor.jpg" },
+      { title:"Retablo principal", place:"Templo de San Francisco de Asís", date:"S. XX", meaning:"Vista del altar mayor y organización espacial del santuario.", image:"retablo_princiapl.jpg" },
+      { title:"Virgen del Rosario con Domingo y Catalina", place:"Templo de San Francisco de Asís", date:"S. XIX", meaning:"Grupo escultórico de madera. La Virgen María entrega el Rosario a Domingo y Catalina.", image:"rosario_domingo_catalina.JPG" },
+      { title:"Virgen del Rosario", place:"Templo de San Francisco de Asís", date:"S. XIX", meaning:"Escultura de yeso estofado. Imagen mariana con Niño y rosario. Patrona de la Orden de Predicadores", image:"rosario.jpg" },
+      { title:"Sagrado Corazón de Jesús", place:"Templo de San Francisco de Asís", date:"S. XIX", meaning:"Escultura de Madera. Imagen devocional vinculada a misericordia, amor divino y bendición.", image:"sagrado_corazon.jpg" },
+      { title:"San José con el Niño", place:"Templo de San Francisco de Asís", date:"S. XVIII", meaning:"Pintura al óleo de San José con el Niño Jesús asociada al cuidado, adoptivo, custodio.", image:"san_jose.jpg" }
+    ];
+
+    /* =========================
+       ALMACENAMIENTO LOCAL
+    ========================== */
+    const galleryKey = "imagenes_sagrado_gallery";
+    const feelingsKey = "imagenes_sagrado_feelings";
+    const generatedKey = "imagenes_sagrado_generadas";
+
+    function getStoredArray(key){
+      try { return JSON.parse(localStorage.getItem(key)) || []; }
+      catch { return []; }
+    }
+    function setStoredArray(key, data){
+      localStorage.setItem(key, JSON.stringify(data));
+    }
+
+    /* =========================
+       REFERENCIAS DEL DOM
+    ========================== */
+    const $ = id => document.getElementById(id);
+
+    const galleryEl = $("gallery");
+    const photoTitle = $("photoTitle");
+    const photoPlace = $("photoPlace");
+    const photoDate = $("photoDate");
+    const photoMeaning = $("photoMeaning");
+    const photoFile = $("photoFile");
+    const addPhotoBtn = $("addPhotoBtn");
+    const resetPhotosBtn = $("resetPhotosBtn");
+
+    const visitorName = $("visitorName");
+    const visitorPlace = $("visitorPlace");
+    const sacredItem = $("sacredItem");
+    const emotionSelect = $("emotionSelect");
+    const visitorText = $("visitorText");
+    const saveFeelingBtn = $("saveFeelingBtn");
+    const clearFeelingsBtn = $("clearFeelingsBtn");
+
+    const totalEntriesEl = $("totalEntries");
+    const topEmotionEl = $("topEmotion");
+    const positiveScoreEl = $("positiveScore");
+    const contemplativeScoreEl = $("contemplativeScore");
+    const keywordsSummaryEl = $("keywordsSummary");
+    const entriesListEl = $("entriesList");
+    const voyantFrame = $("voyantFrame");
+
+    const imageModal = $("imageModal");
+    const closeModal = $("closeModal");
+    const modalImage = $("modalImage");
+    const modalTitle = $("modalTitle");
+    const modalPlace = $("modalPlace");
+    const modalDate = $("modalDate");
+    const modalMeaning = $("modalMeaning");
+    const modalTags = $("modalTags");
+
+    const sacredPrompt = $("sacredPrompt");
+    const sacredStyle = $("sacredStyle");
+    const sacredAspect = $("sacredAspect");
+    const sacredAuthor = $("sacredAuthor");
+    const generateSacredImageBtn = $("generateSacredImageBtn");
+    const generatedSacredGallery = $("generatedSacredGallery");
+    const imageStatus = $("imageStatus");
+    const externalAIGeneratorLink = $("externalAIGeneratorLink");
+
+    /* =========================
+       MODAL
+    ========================== */
+    function openModal(item){
+      modalImage.src = item.image;
+      modalImage.alt = item.title;
+      modalTitle.textContent = item.title;
+      modalPlace.textContent = item.place || "No especificado";
+      modalDate.textContent = item.date || "Sin fecha";
+      modalMeaning.textContent = item.meaning || "Sin descripción";
+      modalTags.innerHTML = (item.tags || []).map(tag => `<span class="tag">${tag}</span>`).join("");
+      imageModal.classList.add("active");
+    }
+    function hideModal(){ imageModal.classList.remove("active"); }
+
+    closeModal.addEventListener("click", hideModal);
+    imageModal.addEventListener("click", e => { if (e.target === imageModal) hideModal(); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") hideModal(); });
+
+    /* =========================
+       GALERÍA
+    ========================== */
+    function renderGallery(){
+      const gallery = [...seedGallery, ...getStoredArray(galleryKey)];
+
+      galleryEl.innerHTML = gallery.map((item, index) => `
+        <article class="card" data-index="${index}">
+          <img src="${item.image}" alt="${item.title}">
+          <div class="card-body">
+            <h3>${item.title}</h3>
+            <p><strong>Lugar:</strong> ${item.place}</p>
+            <p><strong>Fecha:</strong> ${item.date}</p>
+            <p>${item.meaning}</p>
+            <div class="tags">${(item.tags || []).map(tag => `<span class="tag">${tag}</span>`).join("")}</div>
+          </div>
+        </article>
+      `).join("");
+
+      document.querySelectorAll("#gallery .card").forEach(card => {
+        card.addEventListener("click", () => openModal(gallery[Number(card.dataset.index)]));
+      });
+    }
+
+    function readFileAsDataURL(file){
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    addPhotoBtn.addEventListener("click", async () => {
+      const title = photoTitle.value.trim();
+      const place = photoPlace.value.trim();
+      const date = photoDate.value.trim();
+      const meaning = photoMeaning.value.trim();
+      const file = photoFile.files[0];
+
+      if (!title || !place || !meaning || !file) {
+        alert("Completa título, lugar, descripción y selecciona una imagen.");
+        return;
+      }
+
+      try {
+        const image = await readFileAsDataURL(file);
+        const added = getStoredArray(galleryKey);
+        added.unshift({
+          title,
+          place,
+          date: date || "Sin fecha indicada",
+          meaning,
+          image,
+          tags: ["archivo vivo", "registro participativo"]
+        });
+        setStoredArray(galleryKey, added);
+
+        photoTitle.value = "";
+        photoPlace.value = "";
+        photoDate.value = "";
+        photoMeaning.value = "";
+        photoFile.value = "";
+        renderGallery();
+      } catch {
+        alert("No fue posible cargar la imagen.");
+      }
+    });
+
+    resetPhotosBtn.addEventListener("click", () => {
+      if (confirm("Se eliminarán las imágenes añadidas en este navegador.")) {
+        localStorage.removeItem(galleryKey);
+        renderGallery();
+      }
+    });
+
+    /* =========================
+       SENTIMIENTOS
+    ========================== */
+    const lexicon = {
+      positive:["paz","esperanza","consuelo","amor","luz","gracia","misericordia","alegría"],
+      contemplative:["silencio","oración","misterio","trascendencia","presencia","alma","espíritu","sagrado"],
+      memory:["memoria","recuerdo","familia","tradición","historia","pueblo","infancia"],
+      pain:["dolor","ausencia","llanto","pérdida","herida","soledad"]
+    };
+
+    function analyzeEntries(entries){
+      let positive = 0;
+      let contemplative = 0;
+      const emotionCounts = {};
+      const keywordCounts = {};
+
+      entries.forEach(entry => {
+        const text = `${entry.text} ${entry.item} ${entry.emotion}`.toLowerCase();
+        emotionCounts[entry.emotion] = (emotionCounts[entry.emotion] || 0) + 1;
+
+        Object.entries(lexicon).forEach(([group, words]) => {
+          words.forEach(word => {
+            if (text.includes(word)) {
+              keywordCounts[word] = (keywordCounts[word] || 0) + 1;
+              if (group === "positive") positive++;
+              if (group === "contemplative") contemplative++;
+            }
+          });
+        });
+      });
+
+      const topEmotion = Object.entries(emotionCounts).sort((a,b) => b[1] - a[1])[0]?.[0] || "—";
+      const topKeywords = Object.entries(keywordCounts)
+        .sort((a,b) => b[1] - a[1])
+        .slice(0,8)
+        .map(([word, count]) => `${word} (${count})`)
+        .join(" · ") || "Aún no hay suficientes datos.";
+
+      return { positive, contemplative, topEmotion, topKeywords };
+    }
+
+    function renderFeelings(){
+      const entries = getStoredArray(feelingsKey);
+      const analysis = analyzeEntries(entries);
+
+      totalEntriesEl.textContent = entries.length;
+      topEmotionEl.textContent = analysis.topEmotion;
+      positiveScoreEl.textContent = analysis.positive;
+      contemplativeScoreEl.textContent = analysis.contemplative;
+      keywordsSummaryEl.innerHTML = `<strong>Palabras recurrentes:</strong> ${analysis.topKeywords}`;
+
+      entriesListEl.innerHTML = entries.length
+        ? entries.map(entry => `
+          <article class="entry">
+            <small>${entry.name || "Anónimo"} · ${entry.place || "Sin lugar"} · ${entry.date}</small>
+            <p><strong>Imagen o espacio:</strong> ${entry.item || "No especificado"}</p>
+            <p><strong>Emoción principal:</strong> ${entry.emotion}</p>
+            <p>${entry.text}</p>
+          </article>
+        `).join("")
+        : `<div class="entry"><p>Aún no hay testimonios registrados.</p></div>`;
+    }
+
+    saveFeelingBtn.addEventListener("click", () => {
+      const text = visitorText.value.trim();
+      if (!text) {
+        alert("Escribe al menos un testimonio.");
+        return;
+      }
+
+      const entries = getStoredArray(feelingsKey);
+      entries.unshift({
+        name: visitorName.value.trim(),
+        place: visitorPlace.value.trim(),
+        item: sacredItem.value.trim(),
+        emotion: emotionSelect.value,
+        text,
+        date: new Date().toLocaleString("es-MX")
+      });
+      setStoredArray(feelingsKey, entries);
+
+      visitorName.value = "";
+      visitorPlace.value = "";
+      sacredItem.value = "";
+      visitorText.value = "";
+      emotionSelect.value = "Asombro";
+      renderFeelings();
+    });
+
+    clearFeelingsBtn.addEventListener("click", () => {
+      if (confirm("Se eliminarán los testimonios guardados en este navegador.")) {
+        localStorage.removeItem(feelingsKey);
+        renderFeelings();
+      }
+    });
+
+    /* =========================
+       VOYANT
+    ========================== */
+    const voyantBase = "https://voyant-tools.org/?stopList=keywords-eabd5f811f15df3aa0176feac8e68431&panels=corpusterms%2Creader%2Ctrends%2Cphrases%2Ccorpuscollocates&corpus=50415dcbeb335e9db488281becf77b32";
+
+    document.querySelectorAll("[data-query]").forEach(button => {
+      button.addEventListener("click", () => {
+        const query = encodeURIComponent(button.dataset.query);
+        voyantFrame.src = `${voyantBase}&query=${query}`;
+      });
+    });
+
+    /* =========================
+       CARGA INICIAL
+    ========================== */
+    renderGallery();
+    renderFeelings();
+    renderGeneratedArchive();
+  </script>
+</body>
+</html>
